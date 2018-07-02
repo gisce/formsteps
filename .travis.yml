@@ -1,0 +1,20 @@
+sudo: false
+language: python
+python:
+- '3.6'
+install:
+- pip install -r requirements-dev.txt
+- pip install -e .
+script:
+- mamba --enable-coverage
+after_success:
+- coverage report
+deploy:
+  provider: pypi
+  user: gisce
+  password:
+    secure: kMI+dqvsiPNgrOtDEJsTQWi6ARh7dBN7TgpWM+vo4ZVQhCvtZVj/U7pfGs0Dob8ZtZXRGuKwfQ0C3+fT2Wfnscj9SDWu7oiNqIF4TIIwcEznXQlC7Kpe/b5M4RL15ZB0hqMMKUial0ydKrJGLApIslqeS1XwPGIjIqSQGvGmuKInCy9E6IHvXBxObzkmGu/bV4VPWojFO90JUcwBw+JmyXlx0/hhVxV9M2BmrFtOenWTlC8qVyYnWpcafeCWGJuSZbETEjXXRUtK2Vn54jVqfZalyhMHgn/1iXSuYCe0rpf8yAsitgcRgD8X9PM2/P+87jcwAynen6wZSq/s6rAG4+/eZJahWvBd3/+VezPtVHUl4/V5SPgBE33642FMWNP57a4TEFCDw2LDs4/M8iZzoWGk96hIIKG8ooMFstUWyCvg1h285YeaXHtVqm6ZyWnLWWSRZlKXvWi4QoK89JbXqCDFrwnnvpDKjikJqTRDfjjD2eUKXsPum2ig7//H/wxZeUPAfZyvwodFIGcduqzY0M0T9vmsBoyQTthGE1hN8t/EcCl1WnfouVms08ugBHISSZZplNREx0t7axpX2zFFheu2JJfjwsWGmIIW0Q6KHPv2e8ou63MbCpJRN0kjssdNEcTUtA8dmTQepNh4rMS6fm/Gfzo4Jv5SZCEh/rt0IHY=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: gisce/formsteps
