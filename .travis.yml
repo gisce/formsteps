@@ -1,0 +1,19 @@
+sudo: false
+language: python
+python:
+- '3.6'
+install:
+- pip install -r requirements-dev.txt
+- pip install -e .
+script:
+- mamba --enable-coverage
+after_success:
+- coverage report
+deploy:
+  provider: pypi
+  user: gisce
+  password:
+    secure: KLnAk87BXUs+D65/UMCCDkbTyty55lKVU0Q+tvQAPqJrsAythogyjkhw9mTJ8p1LGsIv1XPRwFvqd4fENDb5zwJ3RvHcl2LsMI3YxI8b029Bj63+N1By3KJURfz6cIjVkD4OWGhEPuJDARJg7SYNXz/RH2Gt696iaZpPaQ7Jk9E=
+  on:
+    tags: true
+    repo: gisce/formsteps
